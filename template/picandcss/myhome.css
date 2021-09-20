@@ -1017,14 +1017,13 @@ footer .foot{
     }
    
     .project1{
-        width: 24rem;
+        width: 21rem;
         height: 16rem;
         position:absolute;
-        /* margin-left: 20px; */
        
     }
     .project2{
-        width: 24rem;
+        width: 21rem;
         height: 16rem;
         position: relative;
         background-color:rgba(20, 20, 20, 0.6);
@@ -1032,14 +1031,14 @@ footer .foot{
     
     }
     .project4{
-        width: 24rem;
+        width: 21rem;
         height: 16rem;
         position: relative;
         left: -0px;
         
     }
     .project3 {
-        width: 24rem;
+        width: 21rem;
         height: 16rem;
         z-index: 3;
         position: absolute;
