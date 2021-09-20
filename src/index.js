@@ -470,127 +470,127 @@ app.get("/project", (req, res) => {
   }
 
 })
-// app.post("/insertproject", uploadss, async (req, res) => {
+app.post("/insertproject", async (req, res) => {
 
-//   if(req.session.user==1){
-//     const inserdata = async () => {
-//         try {
-//             const data = await user_colection.updateOne({username:req.session.user_colection.username }, {
-//                 $push: {
-//                     project: {
-//                         projectname: req.body.name,
-//                         desc: req.body.desc,
-//                         link: req.body.link,
-//                         plang:req.body.plang
-//                     }
-//                 }
-//             })
-//         }
-//         catch (err) {
-//             console.log(err);
-//         }
-//     }
-//     inserdata();
-//     user_colection.find({ username: req.session.user_colection.username }, function (err, projectdata) {
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             res.redirect(url.format({
-//                 pathname:"/admin",
-//                 query: {
-//                    "p": 1
-//                  }
-//               }));      
-//         }
-//     })
-//   }
-//   else{
-//     res.redirect("/login")
-//   }
+  if(req.session.user==1){
+    const inserdata = async () => {
+        try {
+            const data = await user_colection.updateOne({username:req.session.user_colection.username }, {
+                $push: {
+                    project: {
+                        projectname: req.body.name,
+                        desc: req.body.desc,
+                        link: req.body.link,
+                        plang:req.body.plang
+                    }
+                }
+            })
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+    inserdata();
+    user_colection.find({ username: req.session.user_colection.username }, function (err, projectdata) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.redirect(url.format({
+                pathname:"/admin",
+                query: {
+                   "p": 1
+                 }
+              }));      
+        }
+    })
+  }
+  else{
+    res.redirect("/login")
+  }
 
-// })
-// app.post("/projectedit", (req, res) => {
-//     if(req.session.user==1){
-//         const projectedt = async () => {
-//             try {
-//                 let updat = await user_colection.updateOne({ username: req.session.user_colection.username ,  "project.projectname": req.session.user_colection.project[req.body.pid].projectname, "project.desc": req.session.user_colection.project[req.body.pid].desc ,"project.link": req.session.user_colection.project[req.body.pid].link,"project.plang": req.session.user_colection.project[req.body.pid].plang},{
-//                     $set: {
-//                         "project.$.projectname": req.body.pname,
-//                         "project.$.desc": req.body.pdesc,
-//                         "project.$.link": req.body.plink,
-//                         "project.$.plang": req.body.plang
-//                     }
-//                 })
-//             }
-//             catch (err) {
-//                 console.log(err)
-//             }
-//         }
-//         projectedt();
-//         res.redirect(url.format({
-//             pathname:"/project",
-//             query: {
-//                "ep": 1
-//              }
-//           })); 
+})
+app.post("/projectedit", (req, res) => {
+    if(req.session.user==1){
+        const projectedt = async () => {
+            try {
+                let updat = await user_colection.updateOne({ username: req.session.user_colection.username ,  "project.projectname": req.session.user_colection.project[req.body.pid].projectname, "project.desc": req.session.user_colection.project[req.body.pid].desc ,"project.link": req.session.user_colection.project[req.body.pid].link,"project.plang": req.session.user_colection.project[req.body.pid].plang},{
+                    $set: {
+                        "project.$.projectname": req.body.pname,
+                        "project.$.desc": req.body.pdesc,
+                        "project.$.link": req.body.plink,
+                        "project.$.plang": req.body.plang
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+        projectedt();
+        res.redirect(url.format({
+            pathname:"/project",
+            query: {
+               "ep": 1
+             }
+          })); 
     
-//     }
-//     else{
-//         res.redirect('/login')
+    }
+    else{
+        res.redirect('/login')
       
-//     }
+    }
     
 
-// })
+})
 
-// app.get("/projectdelete/:id", async (req, res) => {
-//     if(req.session.user==1){
-//     const projectdel = async () => {
-//         try {
-//             const pd = await user_colection.updateOne({ username: req.session.user_colection.username }, {
-//                 $pull: {
-//                     project: {
-//                         projectname: req.session.user_colection.project[req.params.id].projectname,
-//                         desc:req.session.user_colection.project[req.params.id].desc,
-//                         link: req.session.user_colection.project[req.params.id].link,
-//                         plang: req.session.user_colection.project[req.params.id].plang
-//                     }
-//                 }
-//             })
-//         }
-//         catch (err) {
-//             console.log(err)
-//         }
-//     }
-//     projectdel();
-//     res.redirect(url.format({
-//         pathname:"/project",
-//         query: {
-//            "dp": 2
-//          }
-//       })); 
-//     }
-//     else{
-//         res.redirect('/login')
-//     }
-// })
-// app.get("/topproject", (req, res) => {
+app.get("/projectdelete/:id", async (req, res) => {
+    if(req.session.user==1){
+    const projectdel = async () => {
+        try {
+            const pd = await user_colection.updateOne({ username: req.session.user_colection.username }, {
+                $pull: {
+                    project: {
+                        projectname: req.session.user_colection.project[req.params.id].projectname,
+                        desc:req.session.user_colection.project[req.params.id].desc,
+                        link: req.session.user_colection.project[req.params.id].link,
+                        plang: req.session.user_colection.project[req.params.id].plang
+                    }
+                }
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+    projectdel();
+    res.redirect(url.format({
+        pathname:"/project",
+        query: {
+           "dp": 2
+         }
+      })); 
+    }
+    else{
+        res.redirect('/login')
+    }
+})
+app.get("/topproject", (req, res) => {
    
-//     if(req.session.user==1){
-//         user_colection.find({username:req.session.user_colection.username},function (err, projectdata) {
+    if(req.session.user==1){
+        user_colection.find({username:req.session.user_colection.username},function (err, projectdata) {
             
-//                 res.render("topproject", {
-//                     projectdata: projectdata,
-//                     edittopproject: req.query.edittp,
-//                     deletetopproject: req.query.deltp
-//                 });
-//         })
-//     }
-//     else{
-//         res.redirect('/login')
-//     }
-// })
+                res.render("topproject", {
+                    projectdata: projectdata,
+                    edittopproject: req.query.edittp,
+                    deletetopproject: req.query.deltp
+                });
+        })
+    }
+    else{
+        res.redirect('/login')
+    }
+})
 // app.post("/topproject", uploadss, async (req, res) => {
 //     if(req.session.user==1){
 //         console.log(req.file.filename);
