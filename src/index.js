@@ -426,28 +426,28 @@ app.post("/setuserdata", uploadss, (req, res) => {
     }
 })
 
-app.get("/admin", (req, res) => {
-    if (req.session.user == 1) {
-        user_colection.find({ username: req.session.user_colection.username }, function (err, projectdata) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                res.render("admin", {
-                    projectdata: projectdata,
-                   projectinsert:req.query.p,
-                   topprojectinsert:req.query.tp,
-                   bloginsert:req.query.binsert,
-                   datasuccess:req.query.datasuccess
-                });
-            }
-        })
-    }
-    else {
-        res.redirect('/login')
-    }
+// app.get("/admin", (req, res) => {
+//     if (req.session.user == 1) {
+//         user_colection.find({ username: req.session.user_colection.username }, function (err, projectdata) {
+//             if (err) {
+//                 console.log(err);
+//             }
+//             else {
+//                 res.render("admin", {
+//                     projectdata: projectdata,
+//                    projectinsert:req.query.p,
+//                    topprojectinsert:req.query.tp,
+//                    bloginsert:req.query.binsert,
+//                    datasuccess:req.query.datasuccess
+//                 });
+//             }
+//         })
+//     }
+//     else {
+//         res.redirect('/login')
+//     }
 
-})
+// })
 
 // app.get("/project", (req, res) => {
  
