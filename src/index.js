@@ -691,97 +691,97 @@ app.get("/topproject", (req, res) => {
 // })
 
 
-// app.get("/topprojectdelete/:id", async (req, res) => {
-//     if(req.session.user==1){
-//         console.log(req.session.user_colection.username);
-//         console.log(req.params.id);
-//     const topprojectdel = async () => {
-//         try {
-//             const pd = await user_colection.updateOne({ username: req.session.user_colection.username }, {
-//                 $pull: {
-//                     topproject: {
-//                         topprojectname: req.session.user_colection.topproject[req.params.id].topprojectname,
-//                         topprojectdesc: req.session.user_colection.topproject[req.params.id].topprojectdesc,
-//                         language: req.session.user_colection.topproject[req.params.id].language,
-//                         tlink: req.session.user_colection.topproject[req.params.id].tlink,
-//                         timage: req.session.user_colection.topproject[req.params.id].timage,
+app.get("/topprojectdelete/:id", async (req, res) => {
+    if(req.session.user==1){
+        console.log(req.session.user_colection.username);
+        console.log(req.params.id);
+    const topprojectdel = async () => {
+        try {
+            const pd = await user_colection.updateOne({ username: req.session.user_colection.username }, {
+                $pull: {
+                    topproject: {
+                        topprojectname: req.session.user_colection.topproject[req.params.id].topprojectname,
+                        topprojectdesc: req.session.user_colection.topproject[req.params.id].topprojectdesc,
+                        language: req.session.user_colection.topproject[req.params.id].language,
+                        tlink: req.session.user_colection.topproject[req.params.id].tlink,
+                        timage: req.session.user_colection.topproject[req.params.id].timage,
 
-//                     }
-//                 }
-//             })
-//         }
-//         catch (err) {
-//             console.log(err)
-//         }
-//     }
-//     topprojectdel();
-//     res.redirect(url.format({
-//         pathname:"/topproject",
-//         query: {
-//            "deltp": 5
-//          }
-//       })); 
-//     }
-//     else{
-//         res.redirect('/login')
-//     }
-// })
+                    }
+                }
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+    topprojectdel();
+    res.redirect(url.format({
+        pathname:"/topproject",
+        query: {
+           "deltp": 5
+         }
+      })); 
+    }
+    else{
+        res.redirect('/login')
+    }
+})
 
 
-// app.get("/blogg",(req,res)=>{
-//     let today = new Date().toLocaleDateString();
-//     user_colection.find(function (err, projectdata){
-//         const admnname=projectdata[0].username;
-//     user_colection.find({usernmae:admnname},function(err,projectdata){
-//         if(err){
-//             console.log(err);
-//         }
-//         else{
-//             res.render("blog",{
-//                 projectdata:projectdata,
-//                 id:req.session.id1
-//             })
-//         }
-//     })
-// })
-// })
-// app.get("/blogbox/:id",(req,res)=>{
-//     const idd=req.params.id
-//     user_colection.find(function (err, projectdata){
-//         const admnname=projectdata[0].username;
-//     user_colection.find({username:admnname},function(err,projectdata){
-//         console.log(projectdata[0].blogpost[req.params.id].blogname);
-//        if(err){
-//            console.log(err)
-//        }
-//        else{
-//            req.session.id1=idd;
-//         res.redirect('/blogg');
-//        }
-//     })
+app.get("/blogg",(req,res)=>{
+    let today = new Date().toLocaleDateString();
+    user_colection.find(function (err, projectdata){
+        const admnname=projectdata[0].username;
+    user_colection.find({usernmae:admnname},function(err,projectdata){
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.render("blog",{
+                projectdata:projectdata,
+                id:req.session.id1
+            })
+        }
+    })
+})
+})
+app.get("/blogbox/:id",(req,res)=>{
+    const idd=req.params.id
+    user_colection.find(function (err, projectdata){
+        const admnname=projectdata[0].username;
+    user_colection.find({username:admnname},function(err,projectdata){
+        console.log(projectdata[0].blogpost[req.params.id].blogname);
+       if(err){
+           console.log(err)
+       }
+       else{
+           req.session.id1=idd;
+        res.redirect('/blogg');
+       }
+    })
   
-// })
-// })
-// app.get("/blogpost", (req, res) => {
-//     if(req.session.user==1){
-//         user_colection.find({username:req.session.user_colection.username},function (err, projectdata) {
-//             if (err) {
-//                 console.log(err);
-//             }
-//             else {
-//                 res.render("blogpost", {
-//                     projectdata: projectdata,
-//                     editblog:req.query.bedit,
-//                     delblog:req.query.bdel
-//                 });
+})
+})
+app.get("/blogpost", (req, res) => {
+    if(req.session.user==1){
+        user_colection.find({username:req.session.user_colection.username},function (err, projectdata) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.render("blogpost", {
+                    projectdata: projectdata,
+                    editblog:req.query.bedit,
+                    delblog:req.query.bdel
+                });
     
-//             }
-//         })
-//     }
-//     else{
-//         res.redirect('/login');
-//     }
-// })
+            }
+        })
+    }
+    else{
+        res.redirect('/login');
+    }
+})
 // app.post("/blogpost", multiupload, async (req, res) => {
 //    if(req.session.user==1){
 //         if(req.files){
@@ -915,148 +915,121 @@ app.get("/topproject", (req, res) => {
     
 
 // })
-// app.get("/blogdelete/:id", async (req, res) => {
-//     if(req.session.user==1){
-//         console.log(req.params.id);
-//     const blogdel = async () => {
-//         try {
-//             const pd = await user_colection.updateOne({ username: req.session.user_colection.username }, {
-//                 $pull: {
-//                     blogpost: {
-//                         blogname: req.session.user_colection.blogpost[req.params.id].blogname,
-//                         blogdesc: req.session.user_colection.blogpost[req.params.id].blogdesc,
-//                         blogimage: req.session.user_colection.blogpost[req.params.id].blogimage,
-//                         blogdesc1: req.session.user_colection.blogpost[req.params.id].blogdesc1,
-//                         blogimage1: req.session.user_colection.blogpost[req.params.id].blogimage1,
-//                         blogdesc2: req.session.user_colection.blogpost[req.params.id].blogdesc2,
-//                         blogimage2: req.session.user_colection.blogpost[req.params.id].blogiamge2,
+app.get("/blogdelete/:id", async (req, res) => {
+    if(req.session.user==1){
+        console.log(req.params.id);
+    const blogdel = async () => {
+        try {
+            const pd = await user_colection.updateOne({ username: req.session.user_colection.username }, {
+                $pull: {
+                    blogpost: {
+                        blogname: req.session.user_colection.blogpost[req.params.id].blogname,
+                        blogdesc: req.session.user_colection.blogpost[req.params.id].blogdesc,
+                        blogimage: req.session.user_colection.blogpost[req.params.id].blogimage,
+                        blogdesc1: req.session.user_colection.blogpost[req.params.id].blogdesc1,
+                        blogimage1: req.session.user_colection.blogpost[req.params.id].blogimage1,
+                        blogdesc2: req.session.user_colection.blogpost[req.params.id].blogdesc2,
+                        blogimage2: req.session.user_colection.blogpost[req.params.id].blogiamge2,
 
-//                     }
-//                 }
-//             })
-//         }
-//         catch (err) {
-//             console.log(err)
-//         }
-//     }
-//     blogdel();
-//     res.redirect(url.format({
-//         pathname:"/blogpost",
-//         query: {
-//            "bdel": 8
-//          }
-//       })); 
-//     }
-//     else{
-//         res.redirect('/login')
-//     }
-// })
+                    }
+                }
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+    blogdel();
+    res.redirect(url.format({
+        pathname:"/blogpost",
+        query: {
+           "bdel": 8
+         }
+      })); 
+    }
+    else{
+        res.redirect('/login')
+    }
+})
 
-// app.get("/contactwithadminformm",(req,res)=>{
-//    if(req.session.user){
-//     user_colection.find(function (err, projectdata){
-//     res.render("contactpage",{
-//         projectdata:projectdata
-//     })
-//     })
-//    }
-//    else{
-//     res.redirect('/login');
-//    }
-// })
-// app.get("/contactwithadminformmdelete/:id", async (req, res) => {
-//     console.log(req.params.id);
-//     if(req.session.user==1){
-//     const contactdel = async () => {
-//         try {
-//             const cd= await user_colection.updateOne({ username: req.session.user_colection.username }, {
-//                 $pull: {
-//                     contact: {
-//                         cname: req.session.user_colection.contact[req.params.id].cname,
-//                         cemail:req.session.user_colection.contact[req.params.id].cemail,
-//                         csubject: req.session.user_colection.contact[req.params.id].csubject,
-//                         cmsg: req.session.user_colection.contact[req.params.id].cmsg
-//                     }
-//                 }
-//             })
-//         }
-//         catch (err) {
-//             console.log(err)
-//         }
-//     }
-//     contactdel();
-//         res.redirect('/contactwithadminformm')
-//     }
-//     else{
-//         res.redirect('/login')
-//     }
-// })
-// app.get("/contact",(req,res)=>{
-//     res.render("home")
-// })
-// app.post("/contact",(req,res)=>{
-//     user_colection.find(function (err, projectdata){
-//     const admnname=projectdata[0].username;
-//         const inserdata = async () => {
-//             try {
-//                 const data = await user_colection.updateOne({admnname}, {
-//                     $push: {
-//                         contact: {
-//                             cname: req.body.cname,
-//                             cemail: req.body.cemail,
-//                             csubject: req.body.csubject,
-//                             cmsg:req.body.cmsg
-//                         }
-//                     }
-//                 })
-//             }
-//             catch (err) {
-//                 console.log(err);
-//             }
-//         }
-//         inserdata();
-//        res.redirect("/home");
-//     }) 
-// })
+app.get("/contactwithadminformm",(req,res)=>{
+   if(req.session.user){
+    user_colection.find(function (err, projectdata){
+    res.render("contactpage",{
+        projectdata:projectdata
+    })
+    })
+   }
+   else{
+    res.redirect('/login');
+   }
+})
+app.get("/contactwithadminformmdelete/:id", async (req, res) => {
+    console.log(req.params.id);
+    if(req.session.user==1){
+    const contactdel = async () => {
+        try {
+            const cd= await user_colection.updateOne({ username: req.session.user_colection.username }, {
+                $pull: {
+                    contact: {
+                        cname: req.session.user_colection.contact[req.params.id].cname,
+                        cemail:req.session.user_colection.contact[req.params.id].cemail,
+                        csubject: req.session.user_colection.contact[req.params.id].csubject,
+                        cmsg: req.session.user_colection.contact[req.params.id].cmsg
+                    }
+                }
+            })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+    contactdel();
+        res.redirect('/contactwithadminformm')
+    }
+    else{
+        res.redirect('/login')
+    }
+})
+app.get("/contact",(req,res)=>{
+    res.render("home")
+})
+app.post("/contact",(req,res)=>{
+    user_colection.find(function (err, projectdata){
+    const admnname=projectdata[0].username;
+        const inserdata = async () => {
+            try {
+                const data = await user_colection.updateOne({admnname}, {
+                    $push: {
+                        contact: {
+                            cname: req.body.cname,
+                            cemail: req.body.cemail,
+                            csubject: req.body.csubject,
+                            cmsg:req.body.cmsg
+                        }
+                    }
+                })
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        inserdata();
+       res.redirect("/home");
+    }) 
+})
 
 
-// app.get("/logout", (req, res) => {
-//     if (req.session.user == 1) {
-//         req.session.user = 0;
-//         res.redirect('/login')
-//     }
-//     else {
-//        res.redirect('/login');
-//     }
-// })
+app.get("/logout", (req, res) => {
+    if (req.session.user == 1) {
+        req.session.user = 0;
+        res.redirect('/login')
+    }
+    else {
+       res.redirect('/login');
+    }
+})
 
 app.listen(Port, () => {
     console.log(`Listing on Port ${Port}`);
 })
-
-// const express = require("express");
-// const path = require("path");
-// const mongoose = require("mongoose");
-// const body = require("body-parser");
-// const multer = require("multer");
-// const app = express();
-// const session = require("express-session");
-// const cokie = require("cookie-parser");
-// const url = require('url');  
-// const { Console } = require("console");
-// app.use(body.urlencoded({ extended: false }));
-// // ================================================================midel ware for folder==============
-// let pathh = path.join(__dirname, "../template", "views");
-// const static_path = path.join(__dirname, "../template/picandcss");
-// app.use(express.static(static_path));
-// app.set("view engine", "ejs");
-// app.set("views", pathh);
-// const { appendFile } = require("fs");
-// let Port = process.env.PORT || 8000;
-
-// app.get("/",(req,res)=>{
-//     res.render("usama")
-// })
-// app.listen(Port, () => {
-//     console.log(`Listing on Port ${Port}`);
-// })
