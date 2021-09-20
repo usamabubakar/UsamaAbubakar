@@ -1,22 +1,22 @@
-// const express = require("express");
-// const path = require("path");
-// const mongoose = require("mongoose");
-// const body = require("body-parser");
-// const multer = require("multer");
-// const app = express();
-// let Port = process.env.PORT || 8000;
-// const session = require("express-session");
-// const cokie = require("cookie-parser");
-// const url = require('url');  
-// const { Console } = require("console");
-// app.use(body.urlencoded({ extended: false }));
-// // ================================================================midel ware for folder==============
-// let pathh = path.join(__dirname, "../template", "views");
-// const static_path = path.join(__dirname, "../template/picandcss");
-// app.use(express.static(static_path));
-// app.set("view engine", "ejs");
-// app.set("views", pathh);
-// // ===========================================================================================
+const express = require("express");
+const path = require("path");
+const mongoose = require("mongoose");
+const body = require("body-parser");
+const multer = require("multer");
+const app = express();
+let Port = process.env.PORT || 8000;
+const session = require("express-session");
+const cokie = require("cookie-parser");
+const url = require('url');  
+const { Console } = require("console");
+app.use(body.urlencoded({ extended: false }));
+// ================================================================midel ware for folder==============
+let pathh = path.join(__dirname, "../template", "views");
+const static_path = path.join(__dirname, "../template/picandcss");
+app.use(express.static(static_path));
+app.set("view engine", "ejs");
+app.set("views", pathh);
+// ===========================================================================================
 
 // // ============================================================midelware for multer========================
 // // mulert function k kesy jai ga aur destiation chk kry ga 
@@ -37,222 +37,222 @@
 
 
 // // ============================================================================================
-// app.use(cokie());
-// app.use(session({
-//     secret: "do something",
-//     key: "user_id",
-//     resave: false,
-//     saveUninitialized: false,
-//     cookie: {
-//         expires: 600000
-//     }
-// }))
+app.use(cokie());
+app.use(session({
+    secret: "do something",
+    key: "user_id",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}))
 
 
 // // =======================================================================================
-// const DB='mongodb+srv://usama:usama@cluster0.zoxl0.mongodb.net/portfolioo?retryWrites=true&w=majority';
-// mongoose.connect(DB, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true,
-// })
-//     .then(() => {
-//         console.log("connnection done");
-//     })
-//     .catch((err) => {
-//         console.log(err);
-//     })
-// const userschema = new mongoose.Schema({
-//     views:{
-//         type: String,
-//         unique: false
-//     },
-//     username: {
-//         type: String,
-//         unique: false
-//     },
-//     password: {
-//         type: String,
-//         unique: false
-//     },
-//     adminname: {
-//         type: String,
-//         unique: false
-//     },
-//     facebook: {
-//         type: String,
-//         unique: false
-//     },
-//     whatsapp: {
-//         type: String,
-//         unique: false
-//     },
-//     instgram: {
-//         type: String,
-//         unique: false
-//     },
-//     github: {
-//         type: String,
-//         unique: false
-//     },
-//     adminimage: {
-//         type: String,
-//         unique: false
-//     },
-//     project: {
-//         type: Array,
-//         properties: {
-//             items: {
-//                 projectname: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 desc: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 link: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 plang: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 pimage: {
-//                     type: String,
-//                     unique: false
-//                 }
-//             }
-//         }
-//     },
-//     topproject: {
-//         type: Array,
-//         properties: {
-//             items: {
-//                 topprojectname: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 topprojectdesc: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 language: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 tlink: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 timage: {
-//                     type: String,
-//                     unique: false
-//                 }
+const DB='mongodb+srv://usama:usama@cluster0.zoxl0.mongodb.net/portfolioo?retryWrites=true&w=majority';
+mongoose.connect(DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+    .then(() => {
+        console.log("connnection done");
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+const userschema = new mongoose.Schema({
+    views:{
+        type: String,
+        unique: false
+    },
+    username: {
+        type: String,
+        unique: false
+    },
+    password: {
+        type: String,
+        unique: false
+    },
+    adminname: {
+        type: String,
+        unique: false
+    },
+    facebook: {
+        type: String,
+        unique: false
+    },
+    whatsapp: {
+        type: String,
+        unique: false
+    },
+    instgram: {
+        type: String,
+        unique: false
+    },
+    github: {
+        type: String,
+        unique: false
+    },
+    adminimage: {
+        type: String,
+        unique: false
+    },
+    project: {
+        type: Array,
+        properties: {
+            items: {
+                projectname: {
+                    type: String,
+                    unique: false
+                },
+                desc: {
+                    type: String,
+                    unique: false
+                },
+                link: {
+                    type: String,
+                    unique: false
+                },
+                plang: {
+                    type: String,
+                    unique: false
+                },
+                pimage: {
+                    type: String,
+                    unique: false
+                }
+            }
+        }
+    },
+    topproject: {
+        type: Array,
+        properties: {
+            items: {
+                topprojectname: {
+                    type: String,
+                    unique: false
+                },
+                topprojectdesc: {
+                    type: String,
+                    unique: false
+                },
+                language: {
+                    type: String,
+                    unique: false
+                },
+                tlink: {
+                    type: String,
+                    unique: false
+                },
+                timage: {
+                    type: String,
+                    unique: false
+                }
 
-//             }
-//         }
-//     },
-//     blogpost: {
-//         type: Array,
-//         properties: {
-//             items: {
-//                 blogdate:{
-//                     type:String,
-//                     unique:false
-//                 },
-//                 blogname: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 blogdesc: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 blogimage: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 blogdesc1: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 blogimage1: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 blogdesc2: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 blogimage2: {
-//                     type: String,
-//                     unique: false
-//                 }
+            }
+        }
+    },
+    blogpost: {
+        type: Array,
+        properties: {
+            items: {
+                blogdate:{
+                    type:String,
+                    unique:false
+                },
+                blogname: {
+                    type: String,
+                    unique: false
+                },
+                blogdesc: {
+                    type: String,
+                    unique: false
+                },
+                blogimage: {
+                    type: String,
+                    unique: false
+                },
+                blogdesc1: {
+                    type: String,
+                    unique: false
+                },
+                blogimage1: {
+                    type: String,
+                    unique: false
+                },
+                blogdesc2: {
+                    type: String,
+                    unique: false
+                },
+                blogimage2: {
+                    type: String,
+                    unique: false
+                }
 
-//             }
-//         }
-//     },
-//     contact: {
-//         type: Array,
-//         properties: {
-//             items: {
-//                 cname: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 cemail: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 csubject: {
-//                     type: String,
-//                     unique: false
-//                 },
-//                 cmsg: {
-//                     type: String,
-//                     unique: false
-//                 }
-//             }
-//         }
-//     }
+            }
+        }
+    },
+    contact: {
+        type: Array,
+        properties: {
+            items: {
+                cname: {
+                    type: String,
+                    unique: false
+                },
+                cemail: {
+                    type: String,
+                    unique: false
+                },
+                csubject: {
+                    type: String,
+                    unique: false
+                },
+                cmsg: {
+                    type: String,
+                    unique: false
+                }
+            }
+        }
+    }
 
-// })
+})
 
-// const user_colection = new mongoose.model("adminside", userschema);
-// // const data_collection=new mongoose.model("datacolection",dataschema);
-// // 
-// app.get("/home",async(req,res)=>{
+const user_colection = new mongoose.model("adminside", userschema);
+// const data_collection=new mongoose.model("datacolection",dataschema);
+// 
+app.get("/home",async(req,res)=>{
     
-//     user_colection.find(function (err, projectdata) {
-//         const count_views=projectdata[0].views;
-//         let a = count_views;
-// console.log(++a);    
-// console.log(a);
-// const vupdate = async () => {
-//     try {
-//         const au = await user_colection.updateOne({ username: projectdata[0].username }, {
-//             $set: {
-//                 views:a
-//             }
-//         })
-//     }
+    user_colection.find(function (err, projectdata) {
+        const count_views=projectdata[0].views;
+        let a = count_views;
+console.log(++a);    
+console.log(a);
+const vupdate = async () => {
+    try {
+        const au = await user_colection.updateOne({ username: projectdata[0].username }, {
+            $set: {
+                views:a
+            }
+        })
+    }
 
-//     catch (err) {
-//         console.log(err);
-//     }
-// }
-// vupdate ();
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             res.render("home", {
-//                 projectdata: projectdata
-//             });
-//         }
-//     })
-// })
+    catch (err) {
+        console.log(err);
+    }
+}
+vupdate ();
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render("home", {
+                projectdata: projectdata
+            });
+        }
+    })
+})
 // app.get("/",async(req,res)=>{
     
 //     user_colection.find(function (err, projectdata) {
@@ -1030,33 +1030,33 @@
 //     }
 // })
 
-// app.listen(Port, () => {
-//     console.log(`Listing on Port ${Port}`);
-// })
-
-const express = require("express");
-const path = require("path");
-const mongoose = require("mongoose");
-const body = require("body-parser");
-const multer = require("multer");
-const app = express();
-const session = require("express-session");
-const cokie = require("cookie-parser");
-const url = require('url');  
-const { Console } = require("console");
-app.use(body.urlencoded({ extended: false }));
-// ================================================================midel ware for folder==============
-let pathh = path.join(__dirname, "../template", "views");
-const static_path = path.join(__dirname, "../template/picandcss");
-app.use(express.static(static_path));
-app.set("view engine", "ejs");
-app.set("views", pathh);
-const { appendFile } = require("fs");
-let Port = process.env.PORT || 8000;
-
-app.get("/",(req,res)=>{
-    res.render("home")
-})
 app.listen(Port, () => {
     console.log(`Listing on Port ${Port}`);
 })
+
+// const express = require("express");
+// const path = require("path");
+// const mongoose = require("mongoose");
+// const body = require("body-parser");
+// const multer = require("multer");
+// const app = express();
+// const session = require("express-session");
+// const cokie = require("cookie-parser");
+// const url = require('url');  
+// const { Console } = require("console");
+// app.use(body.urlencoded({ extended: false }));
+// // ================================================================midel ware for folder==============
+// let pathh = path.join(__dirname, "../template", "views");
+// const static_path = path.join(__dirname, "../template/picandcss");
+// app.use(express.static(static_path));
+// app.set("view engine", "ejs");
+// app.set("views", pathh);
+// const { appendFile } = require("fs");
+// let Port = process.env.PORT || 8000;
+
+// app.get("/",(req,res)=>{
+//     res.render("usama")
+// })
+// app.listen(Port, () => {
+//     console.log(`Listing on Port ${Port}`);
+// })
