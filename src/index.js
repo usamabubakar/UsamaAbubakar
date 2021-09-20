@@ -322,28 +322,28 @@ app.post("/login", async (req, res) => {
     }
 })
 
-app.get("/setuserdata", (req, res) => {
-    const sign = async () => {
-        try {
-            const signup = new user_colection({
+// app.get("/setuserdata", (req, res) => {
+//     const sign = async () => {
+//         try {
+//             const signup = new user_colection({
 
-                username: "sami",
-                password: "1234",
-                adminname: "Usama Abubakar",
-                adminimage: "admin.png",
-                views:0
-            })
-            const result = await signup.save();
+//                 username: "sami",
+//                 password: "1234",
+//                 adminname: "Usama Abubakar",
+//                 adminimage: "admin.png",
+//                 views:0
+//             })
+//             const result = await signup.save();
 
-        }
-        catch (err) {
-            console.log(err);
-            res.send("by by 404 page");
-        }
-    }
-    sign();
+//         }
+//         catch (err) {
+//             console.log(err);
+//             res.send("by by 404 page");
+//         }
+//     }
+//     sign();
 
-})
+// })
 app.post("/setuserdata", uploadss, (req, res) => {
 
     if (req.session.user == 1) {
