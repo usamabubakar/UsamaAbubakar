@@ -343,7 +343,7 @@ app.get("/setuserdata", (req, res) => {
     sign();
 
 })
-app.post("/setuserdata", /app/uploadss, (req, res) => {
+app.post("/setuserdata", /app/tmp/uploadss, (req, res) => {
 
     if (req.session.user == 1) {
         if (req.file) {
