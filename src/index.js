@@ -292,57 +292,57 @@ app.get("/login", (req, res) => {
     });
 })
 
-// app.post("/login", async (req, res) => {
-//     let findadmin = await user_colection.findOne({ username: req.body.user, password: req.body.password });
-//     if (findadmin) {
-//         req.session.user = 1;
-//         req.session.user_colection = findadmin;
-//         user_colection.find({ username: req.session.user_colection.username }, function (err, projectdata) {
-//             if (err) {
-//                 console.log(err);
-//             }
-//             else {
+app.post("/login", async (req, res) => {
+    let findadmin = await user_colection.findOne({ username: req.body.user, password: req.body.password });
+    if (findadmin) {
+        req.session.user = 1;
+        req.session.user_colection = findadmin;
+        user_colection.find({ username: req.session.user_colection.username }, function (err, projectdata) {
+            if (err) {
+                console.log(err);
+            }
+            else {
                
-//                 res.redirect('/admin');
+                res.redirect('/admin');
 
-//             }
-//         })
-//     }
-//     else {
+            }
+        })
+    }
+    else {
 
-//         req.session.user = 0;
-//         res.redirect(url.format({
-//             pathname:"/login",
-//             query: {
-//                "a": 1
-//              }
-//           }));
+        req.session.user = 0;
+        res.redirect(url.format({
+            pathname:"/login",
+            query: {
+               "a": 1
+             }
+          }));
       
-//     }
-// })
+    }
+})
 
-// app.get("/setuserdata", (req, res) => {
-//     const sign = async () => {
-//         try {
-//             const signup = new user_colection({
+app.get("/setuserdata", (req, res) => {
+    const sign = async () => {
+        try {
+            const signup = new user_colection({
 
-//                 username: "sami",
-//                 password: "1234",
-//                 adminname: "Usama Abubakar",
-//                 adminimage: "admin.png",
-//                 views:0
-//             })
-//             const result = await signup.save();
+                username: "sami",
+                password: "1234",
+                adminname: "Usama Abubakar",
+                adminimage: "admin.png",
+                views:0
+            })
+            const result = await signup.save();
 
-//         }
-//         catch (err) {
-//             console.log(err);
-//             res.send("by by 404 page");
-//         }
-//     }
-//     sign();
+        }
+        catch (err) {
+            console.log(err);
+            res.send("by by 404 page");
+        }
+    }
+    sign();
 
-// })
+})
 // app.post("/setuserdata", uploadss, (req, res) => {
 
 //     if (req.session.user == 1) {
