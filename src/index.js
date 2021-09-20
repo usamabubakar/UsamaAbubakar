@@ -343,111 +343,111 @@ app.get("/setuserdata", (req, res) => {
     sign();
 
 })
-app.post("/setuserdata", uploadss, (req, res) => {
+// app.post("/setuserdata", uploadss, (req, res) => {
 
-    if (req.session.user == 1) {
-        if (req.file) {
-            const adminupdate = async () => {
-                try {
-                    const au = await user_colection.updateOne({ username: req.session.user_colection.username }, {
-                        $set: {
-                            username: req.body.aname,
-                            password: req.body.apassword,
-                            adminname: req.body.admin,
-                            adminimage: req.file.filename,
-                            facebook:req.body.facebook,
-                            instgram:req.body.instgram,
-                            whatsapp:req.body.whatsapp,
-                            github:req.body.github,
-                        }
-                    })
-                }
-
-                catch (err) {
-                    console.log(err);
-                }
-            }
-            adminupdate();
-            user_colection.find({ username: 'sami' }, function (err, projectdata) {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    res.redirect(url.format({
-                        pathname:"/admin",
-                        query: {
-                           "datasuccess": 10
-                         }
-                      }));  
-                  
-                }
-            })
-        }
-        else {
-
-            const adminupdate = async () => {
-                try {
-                    const au = await user_colection.updateOne({ username: 'sami' }, {
-                        $set: {
-                            username: req.body.aname,
-                            password: req.body.apassword,
-                            adminname: req.body.admin,
-                            facebook:req.body.facebook,
-                            instgram:req.body.instgram,
-                            whatsapp:req.body.whatsapp,
-                            github:req.body.github,
-                        }
-                    })
-                }
-
-                catch (err) {
-                    console.log(err);
-                }
-            }
-            adminupdate();
-            user_colection.find({ username: req.session.user_colection.username }, function (err, projectdata) {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    res.redirect(url.format({
-                        pathname:"/admin",
-                        query: {
-                           "datasuccess": 10
-                         }
-                      }));  
-                  
-                }
-            })
-        }
-    }
-    else {
-        res.redirect("/login")
-    }
-})
-
-// app.get("/admin", (req, res) => {
 //     if (req.session.user == 1) {
-//         user_colection.find({ username: req.session.user_colection.username }, function (err, projectdata) {
-//             if (err) {
-//                 console.log(err);
+//         if (req.file) {
+//             const adminupdate = async () => {
+//                 try {
+//                     const au = await user_colection.updateOne({ username: req.session.user_colection.username }, {
+//                         $set: {
+//                             username: req.body.aname,
+//                             password: req.body.apassword,
+//                             adminname: req.body.admin,
+//                             adminimage: req.file.filename,
+//                             facebook:req.body.facebook,
+//                             instgram:req.body.instgram,
+//                             whatsapp:req.body.whatsapp,
+//                             github:req.body.github,
+//                         }
+//                     })
+//                 }
+
+//                 catch (err) {
+//                     console.log(err);
+//                 }
 //             }
-//             else {
-//                 res.render("admin", {
-//                     projectdata: projectdata,
-//                    projectinsert:req.query.p,
-//                    topprojectinsert:req.query.tp,
-//                    bloginsert:req.query.binsert,
-//                    datasuccess:req.query.datasuccess
-//                 });
+//             adminupdate();
+//             user_colection.find({ username: 'sami' }, function (err, projectdata) {
+//                 if (err) {
+//                     console.log(err);
+//                 }
+//                 else {
+//                     res.redirect(url.format({
+//                         pathname:"/admin",
+//                         query: {
+//                            "datasuccess": 10
+//                          }
+//                       }));  
+                  
+//                 }
+//             })
+//         }
+//         else {
+
+//             const adminupdate = async () => {
+//                 try {
+//                     const au = await user_colection.updateOne({ username: 'sami' }, {
+//                         $set: {
+//                             username: req.body.aname,
+//                             password: req.body.apassword,
+//                             adminname: req.body.admin,
+//                             facebook:req.body.facebook,
+//                             instgram:req.body.instgram,
+//                             whatsapp:req.body.whatsapp,
+//                             github:req.body.github,
+//                         }
+//                     })
+//                 }
+
+//                 catch (err) {
+//                     console.log(err);
+//                 }
 //             }
-//         })
+//             adminupdate();
+//             user_colection.find({ username: req.session.user_colection.username }, function (err, projectdata) {
+//                 if (err) {
+//                     console.log(err);
+//                 }
+//                 else {
+//                     res.redirect(url.format({
+//                         pathname:"/admin",
+//                         query: {
+//                            "datasuccess": 10
+//                          }
+//                       }));  
+                  
+//                 }
+//             })
+//         }
 //     }
 //     else {
-//         res.redirect('/login')
+//         res.redirect("/login")
 //     }
-
 // })
+
+app.get("/admin", (req, res) => {
+    if (req.session.user == 1) {
+        user_colection.find({ username: req.session.user_colection.username }, function (err, projectdata) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.render("admin", {
+                    projectdata: projectdata,
+                   projectinsert:req.query.p,
+                   topprojectinsert:req.query.tp,
+                   bloginsert:req.query.binsert,
+                   datasuccess:req.query.datasuccess
+                });
+            }
+        })
+    }
+    else {
+        res.redirect('/login')
+    }
+
+})
 
 // app.get("/project", (req, res) => {
  
