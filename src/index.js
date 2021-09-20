@@ -6,6 +6,9 @@ const multer = require("multer");
 const app = express();
 let Port = process.env.PORT || 8000;
 const session = require("express-session");
+const multerS3 = require('multer-s3')
+var aws = require('aws-sdk')
+var s3 = new aws.S3({});
 const cokie = require("cookie-parser");
 const url = require('url');  
 const { Console } = require("console");
@@ -20,6 +23,18 @@ app.set("views", pathh);
 
 // // ============================================================midelware for multer========================
 // mulert function k kesy jai ga aur destiation chk kry ga 
+var Storage = multer({
+    storage: multerS3({
+      s3: s3,
+      bucket: 'some-bucket',
+      metadata: function (req, file, cb){
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+      },
+      key: function (req, file, cb) {
+        cb(null, Date.now().toString())
+      }
+    })
+  })
 // const Storage = multer.diskStorage({
 //     destination: "../template/picandcss/upload",
 //     filename: (req, file, cb) => {
@@ -28,9 +43,9 @@ app.set("views", pathh);
 // })
 
 // // ab middle ware 
-// const uploadss = multer({
-//     storage: Storage
-// }).single('file');
+const uploadss = multer({
+    storage: Storage
+}).single('file');
 
 // const mupload = multer({ storage: Storage });
 // const multiupload = mupload.fields([{ name: 'file1' }, { name: 'file2' }, { name: 'file3' }])
@@ -343,7 +358,7 @@ app.get("/setuserdata", (req, res) => {
     sign();
 
 })
-app.post("/setuserdata", /app/tmp/uploadss, (req, res) => {
+app.post("/setuserdata", uploadss, (req, res) => {
 
     if (req.session.user == 1) {
         if (req.file) {
