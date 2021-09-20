@@ -529,8 +529,8 @@ font-family: 'Open Sans', sans-serif;
     background-color: rgba(252, 249, 249, 0.201);
     font-family: Ubuntu, sans-serif;
     padding: 3px;
-    max-width: 28rem;
-    min-width: 14rem;
+    max-width: 27rem;
+    min-width: 13rem;
 }
 .content_build .name{
     font-size: 25px;
@@ -836,7 +836,7 @@ footer .foot{
     }
     .content_build{
         position: relative;
-        left: 0px;
+        left: 12px;
     }
     .project4{
         width: 30rem;
@@ -854,7 +854,7 @@ footer .foot{
     .project3 .content_build{
        
         position: relative;
-        left: 0px;
+        left: 12px;
     
     }
     .cir{
@@ -966,7 +966,7 @@ footer .foot{
     }
     .heading .frontname1{
         position: relative;
-        top: -80px;
+        top: -82px;
     }
     .heading .frontname1 h1{
         font-size: 30px;
@@ -986,7 +986,7 @@ footer .foot{
     }
     .heading .frontname2{
         position: relative;
-        top: -76px;
+        top: -79px;
     }
     .heading .frontname2 h1{
         font-size: 30px;
@@ -1020,6 +1020,7 @@ footer .foot{
         width: 24rem;
         height: 16rem;
         position:absolute;
+        /* margin-left: 20px; */
        
     }
     .project2{
@@ -1047,7 +1048,7 @@ footer .foot{
     .project3 .content_build{
        
         position: relative;
-        left: 0px;
+        left: 12px;
         
     
     }
