@@ -20,20 +20,20 @@ app.set("views", pathh);
 
 // // ============================================================midelware for multer========================
 // mulert function k kesy jai ga aur destiation chk kry ga 
-const Storage = multer.diskStorage({
-    destination: "../template/picandcss/upload",
-    filename: (req, file, cb) => {
-        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
-    }
-})
+// const Storage = multer.diskStorage({
+//     destination: "../template/picandcss/upload",
+//     filename: (req, file, cb) => {
+//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+//     }
+// })
 
-// ab middle ware 
-const uploadss = multer({
-    storage: Storage
-}).single('file');
+// // ab middle ware 
+// const uploadss = multer({
+//     storage: Storage
+// }).single('file');
 
-const mupload = multer({ storage: Storage });
-const multiupload = mupload.fields([{ name: 'file1' }, { name: 'file2' }, { name: 'file3' }])
+// const mupload = multer({ storage: Storage });
+// const multiupload = mupload.fields([{ name: 'file1' }, { name: 'file2' }, { name: 'file3' }])
 
 
 // // ============================================================================================
