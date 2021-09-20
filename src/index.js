@@ -1033,12 +1033,29 @@
 // app.listen(Port, () => {
 //     console.log(`Listing on Port ${Port}`);
 // })
-const express=require("express");
+
+const express = require("express");
+const path = require("path");
+const mongoose = require("mongoose");
+const body = require("body-parser");
+const multer = require("multer");
+const app = express();
+const session = require("express-session");
+const cokie = require("cookie-parser");
+const url = require('url');  
+const { Console } = require("console");
+app.use(body.urlencoded({ extended: false }));
+// ================================================================midel ware for folder==============
+let pathh = path.join(__dirname, "../template", "views");
+const static_path = path.join(__dirname, "../template/picandcss");
+app.use(express.static(static_path));
+app.set("view engine", "ejs");
+app.set("views", pathh);
 const { appendFile } = require("fs");
 let Port = process.env.PORT || 8000;
-const app=express();
+
 app.get("/",(req,res)=>{
-    res.send(index.js);
+    res.render("usama")
 })
 app.listen(Port, () => {
     console.log(`Listing on Port ${Port}`);
