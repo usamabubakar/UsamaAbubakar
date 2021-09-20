@@ -253,44 +253,44 @@ vupdate ();
         }
     })
 })
-// app.get("/",async(req,res)=>{
+app.get("/",async(req,res)=>{
     
-//     user_colection.find(function (err, projectdata) {
-//         console.log(projectdata[0].views);
-//         const count_views=projectdata[0].views;
-//         let a = count_views;
-// console.log(++a);    
-// console.log(a);
-// const vupdate = async () => {
-//     try {
-//         const au = await user_colection.updateOne({ username: projectdata[0].username }, {
-//             $set: {
-//                 views:a
-//             }
-//         })
-//     }
+    user_colection.find(function (err, projectdata) {
+        console.log(projectdata[0].views);
+        const count_views=projectdata[0].views;
+        let a = count_views;
+console.log(++a);    
+console.log(a);
+const vupdate = async () => {
+    try {
+        const au = await user_colection.updateOne({ username: projectdata[0].username }, {
+            $set: {
+                views:a
+            }
+        })
+    }
 
-//     catch (err) {
-//         console.log(err);
-//     }
-// }
-// vupdate ();
-//         if (err) {
-//             console.log(err);
-//         }
-//         else {
-//             res.render("home", {
-//                 projectdata: projectdata
-//             });
-//         }
-//     })
-// })
+    catch (err) {
+        console.log(err);
+    }
+}
+vupdate ();
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render("home", {
+                projectdata: projectdata
+            });
+        }
+    })
+})
 
-// app.get("/login", (req, res) => {
-//     res.render("login",{
-//         usernotfound:req.query.a
-//     });
-// })
+app.get("/login", (req, res) => {
+    res.render("login",{
+        usernotfound:req.query.a
+    });
+})
 
 // app.post("/login", async (req, res) => {
 //     let findadmin = await user_colection.findOne({ username: req.body.user, password: req.body.password });
