@@ -1055,7 +1055,7 @@ const { appendFile } = require("fs");
 let Port = process.env.PORT || 8000;
 
 app.get("/",(req,res)=>{
-    res.render("usama")
+    res.render("home")
 })
 app.listen(Port, () => {
     console.log(`Listing on Port ${Port}`);
