@@ -606,104 +606,104 @@ app.get("/topproject", (req, res) => {
         res.redirect('/login')
     }
 })
-// app.post("/topproject", uploadss, async (req, res) => {
-//     if(req.session.user==1){
-//         console.log(req.file.filename);
-//     console.log(req.body.desc1);
-//     const insertopdata = async () => {
-//         try {
-//             const data = await user_colection.updateOne({ username: req.session.user_colection.username }, {
-//                 $push: {
-//                     topproject: {
-//                         topprojectname: req.body.name1,
-//                         topprojectdesc: req.body.desc1,
-//                         language: req.body.lang,
-//                         tlink:req.body.link1,
-//                         timage: req.file.filename
-//                     }
-//                 }
-//             })
-//         }
-//         catch (err) {
-//             console.log(err);
-//         }
-//     }
-//     insertopdata();
-//     res.redirect(url.format({
-//         pathname:"/admin",
-//         query: {
-//            "tp": 3
-//          }
-//       })); 
+app.post("/topproject", uploadss, async (req, res) => {
+    if(req.session.user==1){
+        console.log(req.file.filename);
+    console.log(req.body.desc1);
+    const insertopdata = async () => {
+        try {
+            const data = await user_colection.updateOne({ username: req.session.user_colection.username }, {
+                $push: {
+                    topproject: {
+                        topprojectname: req.body.name1,
+                        topprojectdesc: req.body.desc1,
+                        language: req.body.lang,
+                        tlink:req.body.link1,
+                        timage: req.file.filename
+                    }
+                }
+            })
+        }
+        catch (err) {
+            console.log(err);
+        }
+    }
+    insertopdata();
+    res.redirect(url.format({
+        pathname:"/admin",
+        query: {
+           "tp": 3
+         }
+      })); 
 
-//     }
-//     else{
-//         res.redirect('/login');
-//     }
-// })
+    }
+    else{
+        res.redirect('/login');
+    }
+})
 
-// app.post("/topprojectedit",uploadss, (req, res) => {
-//     console.log(req.body.tpname);
-//     if(req.session.user==1){
-//         if(req.file){
-//             const topprjectedt = async () => {
-//                 try {
-//                     let topupdat = await user_colection.updateOne({ username: req.session.user_colection.username ,  "topproject.topprojectname": req.session.user_colection.topproject[req.body.tpid].topprojectname, "topproject.topprojectdesc": req.session.user_colection.topproject[req.body.tpid].topprojectdesc ,"topproject.language": req.session.user_colection.topproject[req.body.tpid].language , "topproject.tlink": req.session.user_colection.topproject[req.body.tpid].tlink, "topproject.timage": req.session.user_colection.topproject[req.body.tpid].timage}, {
-//                         $set: {
-//                             "topproject.$.topprojectname": req.body.tpname,
-//                             "topproject.$.topprojectdesc": req.body.tpdesc,
-//                             "topproject.$.language": req.body.tplang,
-//                             "topproject.$.tlink": req.body.tplink,
-//                             "topproject.$.timage": req.file.filename
-//                         }
-//                     })
-//                 }
-//                 catch (err) {
-//                     console.log(err)
-//                 }
-//             }
-//             topprjectedt();
-//             res.redirect(url.format({
-//                 pathname:"/topproject",
-//                 query: {
-//                    "edittp": 4
-//                  }
-//               }));  
+app.post("/topprojectedit",uploadss, (req, res) => {
+    console.log(req.body.tpname);
+    if(req.session.user==1){
+        if(req.file){
+            const topprjectedt = async () => {
+                try {
+                    let topupdat = await user_colection.updateOne({ username: req.session.user_colection.username ,  "topproject.topprojectname": req.session.user_colection.topproject[req.body.tpid].topprojectname, "topproject.topprojectdesc": req.session.user_colection.topproject[req.body.tpid].topprojectdesc ,"topproject.language": req.session.user_colection.topproject[req.body.tpid].language , "topproject.tlink": req.session.user_colection.topproject[req.body.tpid].tlink, "topproject.timage": req.session.user_colection.topproject[req.body.tpid].timage}, {
+                        $set: {
+                            "topproject.$.topprojectname": req.body.tpname,
+                            "topproject.$.topprojectdesc": req.body.tpdesc,
+                            "topproject.$.language": req.body.tplang,
+                            "topproject.$.tlink": req.body.tplink,
+                            "topproject.$.timage": req.file.filename
+                        }
+                    })
+                }
+                catch (err) {
+                    console.log(err)
+                }
+            }
+            topprjectedt();
+            res.redirect(url.format({
+                pathname:"/topproject",
+                query: {
+                   "edittp": 4
+                 }
+              }));  
         
-//         }
-//         else{
-//             const topprjectedt = async () => {
-//                 try {
-//                     let topupdat = await user_colection.updateOne({ username: req.session.user_colection.username ,  "topproject.topprojectname": req.session.user_colection.topproject[req.body.tpid].topprojectname, "topproject.topprojectdesc": req.session.user_colection.topproject[req.body.tpid].topprojectdesc ,"topproject.language": req.session.user_colection.topproject[req.body.tpid].language , "topproject.tlink": req.session.user_colection.topproject[req.body.tpid].tlink}, {
-//                         $set: {
-//                             "topproject.$.topprojectname": req.body.tpname,
-//                             "topproject.$.topprojectdesc": req.body.tpdesc,
-//                             "topproject.$.language": req.body.tplang,
-//                             "topproject.$.tlink": req.body.tplink,
-//                         }
-//                     })
-//                 }
-//                 catch (err) {
-//                     console.log(err)
-//                 }
-//             }
-//             topprjectedt();
-//             res.redirect(url.format({
-//                 pathname:"/topproject",
-//                 query: {
-//                    "edittp": 4
-//                  }
-//               })); 
+        }
+        else{
+            const topprjectedt = async () => {
+                try {
+                    let topupdat = await user_colection.updateOne({ username: req.session.user_colection.username ,  "topproject.topprojectname": req.session.user_colection.topproject[req.body.tpid].topprojectname, "topproject.topprojectdesc": req.session.user_colection.topproject[req.body.tpid].topprojectdesc ,"topproject.language": req.session.user_colection.topproject[req.body.tpid].language , "topproject.tlink": req.session.user_colection.topproject[req.body.tpid].tlink}, {
+                        $set: {
+                            "topproject.$.topprojectname": req.body.tpname,
+                            "topproject.$.topprojectdesc": req.body.tpdesc,
+                            "topproject.$.language": req.body.tplang,
+                            "topproject.$.tlink": req.body.tplink,
+                        }
+                    })
+                }
+                catch (err) {
+                    console.log(err)
+                }
+            }
+            topprjectedt();
+            res.redirect(url.format({
+                pathname:"/topproject",
+                query: {
+                   "edittp": 4
+                 }
+              })); 
         
-//         }
-//     }
-//     else{
-//         res.redirect('/login')
+        }
+    }
+    else{
+        res.redirect('/login')
       
-//     }
+    }
     
 
-// })
+})
 
 
 app.get("/topprojectdelete/:id", async (req, res) => {
