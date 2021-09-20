@@ -533,11 +533,11 @@ font-family: 'Open Sans', sans-serif;
     min-width: 13rem;
 }
 .content_build .name{
-    font-size: 25px;
-    font-weight: bolder;
+    font-size: 20px;
+    font-weight: bold;
 }
 .content_build .linkk a{
-    font-weight: 50px;
+    font-weight: 40px;
     color:#FFB400;
 }
 
@@ -1028,6 +1028,7 @@ footer .foot{
         position: relative;
         background-color:rgba(20, 20, 20, 0.6);
         padding: 10px;
+        padding-right: 20px;
     
     }
     .project4{
@@ -1042,12 +1043,16 @@ footer .foot{
         height: 16rem;
         z-index: 3;
         position: absolute;
-        padding: 20px;
+        /* padding: 10px; */
+        padding-left: 5px;
+    }
+    .des{
+        max-width: 19.5rem;
     }
     .project3 .content_build{
-       
+       padding-top: 15px;
         position: relative;
-        left: 12px;
+        left: 9px;
         
     
     }
