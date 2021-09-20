@@ -21,20 +21,6 @@ app.set("view engine", "ejs");
 app.set("views", pathh);
 // ===========================================================================================
 
-// // ============================================================midelware for multer========================
-// mulert function k kesy jai ga aur destiation chk kry ga 
-// var Storage = multer({
-//     storage: multerS3({
-//       s3: s3,
-//       bucket: 'some-bucket',
-//       metadata: function (req, file, cb){
-//         cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
-//       },
-//       key: function (req, file, cb) {
-//         cb(null, Date.now().toString())
-//       }
-//     })
-//   })
 const Storage = multer.diskStorage({
     destination: "template/picandcss/upload",
     filename: (req, file, cb) => {
@@ -47,8 +33,8 @@ const uploadss = multer({
     storage: Storage
 }).single('file');
 
-// const mupload = multer({ storage: Storage });
-// const multiupload = mupload.fields([{ name: 'file1' }, { name: 'file2' }, { name: 'file3' }])
+const mupload = multer({ storage: Storage });
+const multiupload = mupload.fields([{ name: 'file1' }, { name: 'file2' }, { name: 'file3' }])
 
 
 // // ============================================================================================
@@ -797,139 +783,139 @@ app.get("/blogpost", (req, res) => {
         res.redirect('/login');
     }
 })
-// app.post("/blogpost", multiupload, async (req, res) => {
-//    if(req.session.user==1){
-//         if(req.files){
-//             const inserblogdata = async () => {
-//                 try {
-//                     const blogdata = await user_colection.updateOne({ username: req.session.user_colection.username }, {
-//                         $push: {
-//                             blogpost: {
-//                                 blogdate: new Date().toLocaleDateString(),
-//                                 blogname: req.body.bbname1,
-//                                 blogdesc: req.body.bbdesc1,
-//                                 blogimage: `upload/${req.files.file1[0].filename}`,
-//                                 blogdesc1: req.body.bbdesc2,
-//                                 blogimage1:`upload/${req.files.file2[0].filename}`,
-//                                 blogdesc2: req.body.bbdesc3,
-//                                 blogimage2: `upload/${req.files.file3[0].filename}`
-//                             }
-//                         }
-//                     })
-//                 }
-//                 catch (err) {
-//                     console.log(err);
-//                 }
-//             }
-//             inserblogdata();
-//             res.redirect(url.format({
-//                 pathname:"/admin",
-//                 query: {
-//                    "binsert": 6
-//                  }
-//               })); 
-//         }
-//         else{
-//             const inserblogdata = async () => {
-//                 try {
-//                     const blogdata = await user_colection.updateOne({ username: req.session.user_colection.username }, {
-//                         $push: {
-//                             blogpost: {
-//                                 blogdate: new Date().toLocaleDateString(),
-//                                 blogname: req.body.bbname1,
-//                                 blogdesc: req.body.bbdesc1,
-//                                 blogdesc1: req.body.bbdesc2,
-//                                 blogdesc2: req.body.bbdesc3,
-//                             }
-//                         }
-//                     })
+app.post("/blogpost", multiupload, async (req, res) => {
+   if(req.session.user==1){
+        if(req.files){
+            const inserblogdata = async () => {
+                try {
+                    const blogdata = await user_colection.updateOne({ username: req.session.user_colection.username }, {
+                        $push: {
+                            blogpost: {
+                                blogdate: new Date().toLocaleDateString(),
+                                blogname: req.body.bbname1,
+                                blogdesc: req.body.bbdesc1,
+                                blogimage: `upload/${req.files.file1[0].filename}`,
+                                blogdesc1: req.body.bbdesc2,
+                                blogimage1:`upload/${req.files.file2[0].filename}`,
+                                blogdesc2: req.body.bbdesc3,
+                                blogimage2: `upload/${req.files.file3[0].filename}`
+                            }
+                        }
+                    })
+                }
+                catch (err) {
+                    console.log(err);
+                }
+            }
+            inserblogdata();
+            res.redirect(url.format({
+                pathname:"/admin",
+                query: {
+                   "binsert": 6
+                 }
+              })); 
+        }
+        else{
+            const inserblogdata = async () => {
+                try {
+                    const blogdata = await user_colection.updateOne({ username: req.session.user_colection.username }, {
+                        $push: {
+                            blogpost: {
+                                blogdate: new Date().toLocaleDateString(),
+                                blogname: req.body.bbname1,
+                                blogdesc: req.body.bbdesc1,
+                                blogdesc1: req.body.bbdesc2,
+                                blogdesc2: req.body.bbdesc3,
+                            }
+                        }
+                    })
                     
-//                 }
+                }
 
-//                 catch (err) {
-//                     console.log(err);
-//                 }
-//             }
-//             inserblogdata();
-//             res.redirect(url.format({
-//                 pathname:"/admin",
-//                 query: {
-//                    "binsert": 6
-//                  }
-//               })); 
-//         }
+                catch (err) {
+                    console.log(err);
+                }
+            }
+            inserblogdata();
+            res.redirect(url.format({
+                pathname:"/admin",
+                query: {
+                   "binsert": 6
+                 }
+              })); 
+        }
         
     
-//    }
-//    else{
-//     res.redirect('/login')
-//    }
-// })
+   }
+   else{
+    res.redirect('/login')
+   }
+})
 
-// app.post("/blogedit",multiupload, (req, res) => {
-//     if(req.session.user==1){
-//         if(req.files){
-//             const blogedit = async () => {
-//                 try {
-//                     let blogupdate1 = await user_colection.updateOne({ username: req.session.user_colection.username ,  "blogpost.blogname": req.session.user_colection.blogpost[req.body.bid].blogname, "blogpost.blogimage": req.session.user_colection.blogpost[req.body.bid].blogimage, "blogpost.blogdesc": req.session.user_colection.blogpost[req.body.bid].blogdesc, "blogpost.blogimage1": req.session.user_colection.blogpost[req.body.bid].blogimage1, "blogpost.blogdesc1": req.session.user_colection.blogpost[req.body.bid].blogdesc1,"blogpost.blogimage2": req.session.user_colection.blogpost[req.body.bid].blogimage2, "blogpost.blogdesc2": req.session.user_colection.blogpost[req.body.bid].blogdesc2 }, {
-//                         $set: {
-//                             "blogpost.$.blogname": req.body.bbname,
-//                             "blogpost.$.blogdesc": req.body.bdesc,
-//                             "blogpost.$.blogimage":  `upload/${req.files.file1[0].filename}`,
-//                             "blogpost.$.blogdesc1": req.body.bdesc1,
-//                             "blogpost.$.blogimage1": `upload/${req.files.file2[0].filename}`,
-//                             "blogpost.$.blogdesc2": req.body.bdesc2,
-//                             "blogpost.$.blogimage2":  `upload/${req.files.file3[0].filename}`,
+app.post("/blogedit",multiupload, (req, res) => {
+    if(req.session.user==1){
+        if(req.files){
+            const blogedit = async () => {
+                try {
+                    let blogupdate1 = await user_colection.updateOne({ username: req.session.user_colection.username ,  "blogpost.blogname": req.session.user_colection.blogpost[req.body.bid].blogname, "blogpost.blogimage": req.session.user_colection.blogpost[req.body.bid].blogimage, "blogpost.blogdesc": req.session.user_colection.blogpost[req.body.bid].blogdesc, "blogpost.blogimage1": req.session.user_colection.blogpost[req.body.bid].blogimage1, "blogpost.blogdesc1": req.session.user_colection.blogpost[req.body.bid].blogdesc1,"blogpost.blogimage2": req.session.user_colection.blogpost[req.body.bid].blogimage2, "blogpost.blogdesc2": req.session.user_colection.blogpost[req.body.bid].blogdesc2 }, {
+                        $set: {
+                            "blogpost.$.blogname": req.body.bbname,
+                            "blogpost.$.blogdesc": req.body.bdesc,
+                            "blogpost.$.blogimage":  `upload/${req.files.file1[0].filename}`,
+                            "blogpost.$.blogdesc1": req.body.bdesc1,
+                            "blogpost.$.blogimage1": `upload/${req.files.file2[0].filename}`,
+                            "blogpost.$.blogdesc2": req.body.bdesc2,
+                            "blogpost.$.blogimage2":  `upload/${req.files.file3[0].filename}`,
                             
-//                         }
-//                     })
-//                 }
-//                 catch (err) {
-//                     console.log(err)
-//                 }
-//             }
-//             blogedit();
-//             res.redirect(url.format({
-//                 pathname:"/blogpost",
-//                 query: {
-//                    "bedit": 7
-//                  }
-//               })); 
+                        }
+                    })
+                }
+                catch (err) {
+                    console.log(err)
+                }
+            }
+            blogedit();
+            res.redirect(url.format({
+                pathname:"/blogpost",
+                query: {
+                   "bedit": 7
+                 }
+              })); 
         
-//         }
-//         else{
-//             const blogedit1 = async () => {
-//                 try {
-//                     let blogupdate = await user_colection.updateOne({ username: req.session.user_colection.username ,  "blogpost.blogname": req.session.user_colection.blogpost[req.body.bid].blogname, "blogpost.blogdesc": req.session.user_colection.blogpost[req.body.bid].blogdesc, "blogpost.blogdesc1": req.session.user_colection.blogpost[req.body.bid].blogdesc1, "blogpost.blogdesc2": req.session.user_colection.blogpost[req.body.bid].blogdesc2 }, {
-//                         $set: {
-//                             "blogpost.$.blogname": req.body.bname,
-//                             "blogpost.$.blogdesc": req.body.bdesc,
-//                             "blogpost.$.blogdesc1": req.body.bdesc1,
-//                             "blogpost.$.blogdesc2": req.body.bdesc2
-//                         }
-//                     })
-//                 }
-//                 catch (err) {
-//                     console.log(err)
-//                 }
-//             }
-//             blogedit1();
-//             res.redirect(url.format({
-//                 pathname:"/blogpost",
-//                 query: {
-//                    "bedit": 7
-//                  }
-//               })); 
+        }
+        else{
+            const blogedit1 = async () => {
+                try {
+                    let blogupdate = await user_colection.updateOne({ username: req.session.user_colection.username ,  "blogpost.blogname": req.session.user_colection.blogpost[req.body.bid].blogname, "blogpost.blogdesc": req.session.user_colection.blogpost[req.body.bid].blogdesc, "blogpost.blogdesc1": req.session.user_colection.blogpost[req.body.bid].blogdesc1, "blogpost.blogdesc2": req.session.user_colection.blogpost[req.body.bid].blogdesc2 }, {
+                        $set: {
+                            "blogpost.$.blogname": req.body.bname,
+                            "blogpost.$.blogdesc": req.body.bdesc,
+                            "blogpost.$.blogdesc1": req.body.bdesc1,
+                            "blogpost.$.blogdesc2": req.body.bdesc2
+                        }
+                    })
+                }
+                catch (err) {
+                    console.log(err)
+                }
+            }
+            blogedit1();
+            res.redirect(url.format({
+                pathname:"/blogpost",
+                query: {
+                   "bedit": 7
+                 }
+              })); 
         
-//         }
-//     }
-//     else{
-//         res.redirect("login")
+        }
+    }
+    else{
+        res.redirect("login")
       
-//     }
+    }
     
 
-// })
+})
 app.get("/blogdelete/:id", async (req, res) => {
     if(req.session.user==1){
         console.log(req.params.id);
