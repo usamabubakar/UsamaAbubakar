@@ -51,7 +51,7 @@ app.use(session({
 
 
 // // =======================================================================================
-const DB='mongodb+srv://usama:usama@cluster0.zoxl0.mongodb.net/portfolioo?retryWrites=true&w=majority';
+const DB='mongodb://usama:usama@cluster0-shard-00-00.zoxl0.mongodb.net:27017,cluster0-shard-00-01.zoxl0.mongodb.net:27017,cluster0-shard-00-02.zoxl0.mongodb.net:27017/portfolioo?ssl=true&replicaSet=atlas-of1x76-shard-0&authSource=admin&retryWrites=true&w=majority';
 mongoose.connect(DB, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -127,6 +127,7 @@ const userschema = new mongoose.Schema({
         }
     },
     topproject: {
+      
         type: Array,
         properties: {
             items: {
@@ -153,6 +154,7 @@ const userschema = new mongoose.Schema({
 
             }
         }
+        
     },
     blogpost: {
         type: Array,
@@ -189,8 +191,18 @@ const userschema = new mongoose.Schema({
                 blogimage2: {
                     type: String,
                     unique: false
-                }
-
+                },
+                commentbox:[{
+                        cdate:{
+                            type:String,
+                            unique:false
+                        },
+                        commenttext:{
+                            type:String,
+                            unique:false
+                        }
+                     
+                }]
             }
         }
     },
@@ -763,6 +775,51 @@ app.get("/blogbox/:id",(req,res)=>{
   
 })
 })
+app.post("/coment",async(req,res)=>{
+    console.log( req.session.id1);
+    const bidd=req.session.id1;
+    console.log(req.body.comnttext)
+    user_colection.find(function (err, projectdata){
+        const blogid=projectdata[0].blogpost[bidd];
+        // console.log(bidd);
+        const admnname=projectdata[0].username;
+        console.log(blogid);
+        const inserdata = async () => {
+            try {
+                console.log("usamaaa");
+                const data = await user_colection.updateOne({blogpost:'3'},{
+                    $push: {
+                            commentbox:{
+                               "commentbox.$.cdate" :new Date().toLocaleDateString(),
+                                "commentbox.$.commenttext": req.body.comnttext
+                            }
+                    }
+
+                })
+                console.log("usama");
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        inserdata();
+        user_colection.find({ username: admnname}, function (err, projectdata) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                res.redirect(url.format({
+                    pathname:"/blogg",
+                    query: {
+                       "p": 10
+                     }
+                  }));      
+            }
+        })
+      
+    
+    })
+})
 app.get("/blogpost", (req, res) => {
     if(req.session.user==1){
         user_colection.find({username:req.session.user_colection.username},function (err, projectdata) {
@@ -798,7 +855,8 @@ app.post("/blogpost", multiupload, async (req, res) => {
                                 blogdesc1: req.body.bbdesc2,
                                 blogimage1:`upload/${req.files.file2[0].filename}`,
                                 blogdesc2: req.body.bbdesc3,
-                                blogimage2: `upload/${req.files.file3[0].filename}`
+                                blogimage2: `upload/${req.files.file3[0].filename}`,
+                                commentbox:[{cdate:0,commenttext:0}]
                             }
                         }
                     })
